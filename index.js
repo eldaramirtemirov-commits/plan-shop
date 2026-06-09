@@ -13,7 +13,7 @@ function sendTelegramMessage(text) {
     return new Promise((resolve) => {
         const https = require('https');
         const encodedText = encodeURIComponent(text);
-        const url = `https://telegram.org{TG_TOKEN}/sendMessage?chat_id=${MY_CHAT_ID}&text=${encodedText}&parse_mode=Markdown`;
+        const url = `https://api.telegram.org/bot${TG_TOKEN}/sendMessage?chat_id=${MY_CHAT_ID}&text=${encodedText}&parse_mode=Markdown`;
 
         https.get(url, (res) => {
             resolve(true); 
