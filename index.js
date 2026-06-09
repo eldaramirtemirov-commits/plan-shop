@@ -87,17 +87,18 @@ const server = http.createServer((req, res) => {
 
                 await sendTelegramMessage(message);
                 
-                // Простая и надежная склейка ссылки без косых кавычек
-                const testUrl = "https://lava.ru";
+                // Перенаправляем игрока на нашу страницу выбора оплаты pay.html, передавая данные в ссылку
+const payPageUrl = "/pay.html?nickname=" + encodeURIComponent(data.nickname) + "&item=" + encodeURIComponent(orderDetails) + "&price=" + price;
+
+res.writeHead(200, { 'Content-Type': 'application/json' });
+res.end(JSON.stringify({ url: payPageUrl }));
                 
-                res.writeHead(200, { 'Content-Type': 'application/json' });
-                res.end(JSON.stringify({ url: testUrl })); 
             } catch (e) {
                 res.writeHead(400);
                 res.end();
             }
         });
-    } 
+
     else {
         res.writeHead(404);
         res.end('404 Not Found');
