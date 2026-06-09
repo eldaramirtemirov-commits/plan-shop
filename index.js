@@ -4,16 +4,16 @@ const path = require('path');
 
 const PORT = 3000;
 
-// НАСТРОЙКИ ТЕЛЕГРАМ-БОТА (Кавычки обязательно должны остаться!)
+// НАСТРОЙКИ ТЕЛЕГРАМ-БОТА (Убедитесь, что здесь стоят ваши реальные ключи в кавычках!)
 const TG_TOKEN = '8259253933:AAHJTXzS8oo2HpJh0IEuxbWFKAvATM2HbWU';
 const MY_CHAT_ID = '2126226102';
 
-// Асинхронная функция отправки, которую Vercel гарантированно дождется
+// Асинхронная функция отправки уведомления в Telegram
 function sendTelegramMessage(text) {
     return new Promise((resolve) => {
         const https = require('https');
         const encodedText = encodeURIComponent(text);
-        const url = `https://api.telegram.org/bot${TG_TOKEN}/sendMessage?chat_id=${MY_CHAT_ID}&text=${encodedText}&parse_mode=Markdown`;
+        const url = `https://telegram.org{TG_TOKEN}/sendMessage?chat_id=${MY_CHAT_ID}&text=${encodedText}&parse_mode=Markdown`;
 
         https.get(url, (res) => {
             resolve(true); 
@@ -25,7 +25,6 @@ function sendTelegramMessage(text) {
 }
 
 const server = http.createServer((req, res) => {
-    // Пропускаем приветственное окно ngrok, если оно используется
     res.setHeader('ngrok-skip-browser-warning', 'true');
 
     if (req.url === '/' || req.url === '/index.html') {
@@ -56,7 +55,6 @@ const server = http.createServer((req, res) => {
         let body = '';
         req.on('data', chunk => { body += chunk.toString(); });
         
-        // Добавлено слово async перед функцией, чтобы работал await внутри
         req.on('end', async () => {
             try {
                 const data = JSON.parse(body);
@@ -87,11 +85,14 @@ const server = http.createServer((req, res) => {
                                     ? `\`/give ${data.nickname} token ${data.count}\`` 
                                     : `\`/setgroup "${data.nickname}" ${data.item}\``);
 
-                // Жестко заставляем сервер дождаться отправки в Telegram
+                // Ждем отправку в Telegram
                 await sendTelegramMessage(message);
                 
+                // Исправленная тестовая ссылка для прохождения модерации в Lava
+                const testUrl = `https://lava.ru{price}&text=Donate_Minecraft`;
+                
                 res.writeHead(200, { 'Content-Type': 'application/json' });
-                res.end(JSON.stringify({ url: `https://lava.ru{price}&text=Donate_Minecraft` }));
+                res.end(JSON.stringify({ url: testUrl })); 
             } catch (e) {
                 res.writeHead(400);
                 res.end();
