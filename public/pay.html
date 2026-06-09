@@ -81,20 +81,24 @@
     const selectedMethod = document.querySelector('input[name="payment_method"]:checked').value;
     let redirectUrl = "";
 
-    // ====== НАСТРОЙКА РЕАЛЬНЫХ ССЫЛОК ДЛЯ ВАШЕЙ КАССЫ ======
+    // ====== ИСПРАВЛЕННАЯ СБОРКА ССЫЛОК ЧЕРЕЗ ЗНАК ПЛЮС ======
     if (selectedMethod === 'sbp') {
-        // Пример правильной ссылки с использованием знака $ перед скобкой переменной стоимости
-        redirectUrl = `https://makesapayment.ru/{price}&shop=PlanShop`;
+        redirectUrl = "https://makesapayment.ru/" + price + "&shop=PlanShop";
     } 
     else if (selectedMethod === 'card_rf') {
-        redirectUrl = `https://makesapayment.ru/{price}&shop=PlanShop`;
+        redirectUrl = "https://makesapayment.ru/" + price + "&shop=PlanShop";
     } 
     else if (selectedMethod === 'card_by') {
-        redirectUrl = `https://makesapayment.ru/{price}&shop=PlanShop`;
+        redirectUrl = "https://makesapayment.ru/" + price + "&shop=PlanShop";
     } 
     else if (selectedMethod === 'card_int') {
-        redirectUrl = `https://makesapayment.ru/{price}&shop=PlanShop`;
+        redirectUrl = "https://makesapayment.ru/" + price + "&shop=PlanShop";
     }
+
+    // Перенаправляем игрока на выбранный сайт оплаты
+    window.location.href = redirectUrl;
+}
+
 
     // Перенаправляем игрока на выбранный сайт оплаты
     window.location.href = redirectUrl;
