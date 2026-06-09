@@ -113,16 +113,21 @@ const server = http.createServer((req, res) => {
 function sendTelegramMessage(text) {
     const https = require('https');
     
-    // Кодируем текст, чтобы в нем корректно передавались пробелы и спецсимволы
-    const encodedText = encodeURIComponent(text);
-    const url = `https://api.telegram.org/bot${TG_TOKEN}/sendMessage?chat_id=${MY_CHAT_ID}&text=${encodedText}&parse_mode=Markdown`;
-    https.get(url, (res) => {
-        // Запрос успешно отправлен
-    }).on('error', (e) => {
-        console.error('[ОШИБКА ТГ] Не удалось отправить сообщение:', e.message);
+    // Перепишите функцию в самом верху или внизу index.js
+function sendTelegramMessage(text) {
+    return new Promise((resolve) => {
+        const https = require('https');
+        const encodedText = encodeURIComponent(text);
+        const url = `https://api.telegram.org/bot${TG_TOKEN}/sendMessage?chat_id=${MY_CHAT_ID}&text=${encodedText}&parse_mode=Markdown`;
+
+        https.get(url, (res) => {
+            resolve(true); // Успешно дождались ответа от ТГ
+        }).on('error', (e) => {
+            console.error('[ОШИБКА ТГ]', e.message);
+            resolve(false); // Ошибка, но сервер не зависнет
+        });
     });
 }
-
 server.listen(PORT, () => {
     console.log(`==================================================`);
     console.log(` МАГАЗИН "Plan Shop For Ore" УСПЕШНО ЗАПУЩЕН!`);
