@@ -78,32 +78,26 @@
         document.getElementById('out-price').innerText = price;
 
         function startPayment() {
-    const selectedMethod = document.querySelector('input[name="payment_method"]:checked').value;
-    let redirectUrl = "";
+            const selectedMethod = document.querySelector('input[name="payment_method"]:checked').value;
+            let redirectUrl = "";
 
-    // ====== ИСПРАВЛЕННАЯ СБОРКА ССЫЛОК ЧЕРЕЗ ЗНАК ПЛЮС ======
-    if (selectedMethod === 'sbp') {
-        redirectUrl = "https://makesapayment.ru/" + price + "&shop=PlanShop";
-    } 
-    else if (selectedMethod === 'card_rf') {
-        redirectUrl = "https://makesapayment.ru/" + price + "&shop=PlanShop";
-    } 
-    else if (selectedMethod === 'card_by') {
-        redirectUrl = "https://makesapayment.ru/" + price + "&shop=PlanShop";
-    } 
-    else if (selectedMethod === 'card_int') {
-        redirectUrl = "https://makesapayment.ru/" + price + "&shop=PlanShop";
-    }
+            // ====== ИСПРАВЛЕННАЯ СБОРКА ССЫЛОК С КОСЫМИ ЧЕРТАМИ ======
+            if (selectedMethod === 'sbp') {
+                redirectUrl = "https://makesapayment.ru/" + price + "&shop=PlanShop";
+            } 
+            else if (selectedMethod === 'card_rf') {
+                redirectUrl = "https://makesapayment.ru/" + price + "&shop=PlanShop";
+            } 
+            else if (selectedMethod === 'card_by') {
+                redirectUrl = "https://makesapayment.ru/" + price + "&shop=PlanShop";
+            } 
+            else if (selectedMethod === 'card_int') {
+                redirectUrl = "https://makesapayment.ru/" + price + "&shop=PlanShop";
+            }
 
-    // Перенаправляем игрока на выбранный сайт оплаты
-    window.location.href = redirectUrl;
-}
-
-
-    // Перенаправляем игрока на выбранный сайт оплаты
-    window.location.href = redirectUrl;
-}
-
+            // Перенаправляем игрока на выбранный сайт оплаты
+            window.location.href = redirectUrl;
+        }
     </script>
 </body>
 </html>
