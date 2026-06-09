@@ -16,6 +16,10 @@
       "dest": "index.js"
     },
     {
+      "src": "/pay.html",
+      "dest": "public/pay.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "public/$1"
     }
