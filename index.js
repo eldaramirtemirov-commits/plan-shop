@@ -4,16 +4,16 @@ const path = require('path');
 
 const PORT = 3000;
 
-// НАСТРОЙКИ ТЕЛЕГРАМ-БОТА (Убедитесь, что здесь стоят ваши реальные ключи в кавычках!)
-const TG_TOKEN = '8259253933:AAHJTXzS8oo2HpJh0IEuxbWFKAvATM2HbWU';
-const MY_CHAT_ID = '2126226102';
+// НАСТРОЙКИ ТЕЛЕГРАМ-БОТА (Впишите свои данные строго в кавычках!)
+const TG_TOKEN = 'СЮДА_ВСТАВЬТЕ_ТОКЕН_ОТ_BOTFATHER';
+const MY_CHAT_ID = 'СЮДА_ВСТАВЬТЕ_ВАШ_CHAT_ID';
 
 // Асинхронная функция отправки уведомления в Telegram
 function sendTelegramMessage(text) {
     return new Promise((resolve) => {
         const https = require('https');
         const encodedText = encodeURIComponent(text);
-        const url = `https://telegram.org{TG_TOKEN}/sendMessage?chat_id=${MY_CHAT_ID}&text=${encodedText}&parse_mode=Markdown`;
+        const url = "https://telegram.org" + TG_TOKEN + "/sendMessage?chat_id=" + MY_CHAT_ID + "&text=" + encodedText + "&parse_mode=Markdown";
 
         https.get(url, (res) => {
             resolve(true); 
@@ -58,7 +58,7 @@ const server = http.createServer((req, res) => {
         req.on('end', async () => {
             try {
                 const data = JSON.parse(body);
-                console.log(`[МАГАЗИН] Игрок ${data.nickname} выбрал товар: ${data.item}`);
+                console.log("[МАГАЗИН] Игрок " + data.nickname + " выбрал товар: " + data.item);
                 
                 let price = 0;
                 if (data.item === 'tokens') {
@@ -74,21 +74,20 @@ const server = http.createServer((req, res) => {
                     if (data.item === 'hydra') price = 999;
                 }
                 
-                let orderDetails = data.item === 'tokens' ? `${data.count} токенов` : `Привилегия [${data.item.toUpperCase()}]`;
+                let orderDetails = data.item === 'tokens' ? data.count + " токенов" : "Привилегия [" + data.item.toUpperCase() + "]";
 
-                const message = `🔔 *НОВАЯ ПОПЫТКА ПОКУПКИ!* 🔔\n\n` +
-                                `👤 Игрок: \`${data.nickname}\`\n` +
-                                `📦 Товар: ${orderDetails}\n` +
-                                `💰 Сумма: ${price} руб.\n\n` +
-                                `⌨️ Команда для выдачи на Aternos:\n` +
+                const message = "🔔 *НОВАЯ ПОПЫТКА ПОКУПКИ!* 🔔\n\n" +
+                                "👤 Игрок: `" + data.nickname + "`\n" +
+                                "📦 Товар: " + orderDetails + "\n" +
+                                "💰 Сумма: " + price + " руб.\n\n" +
+                                "⌨️ Команда для выдачи на Aternos:\n" +
                                 (data.item === 'tokens' 
-                                    ? `\`/give ${data.nickname} token ${data.count}\`` 
-                                    : `\`/setgroup "${data.nickname}" ${data.item}\``);
+                                    ? "`/give " + data.nickname + " token " + data.count + "`" 
+                                    : "`/setgroup \"" + data.nickname + "\" " + data.item + "`");
 
-                // Ждем отправку в Telegram
                 await sendTelegramMessage(message);
                 
-                // Исправленная тестовая ссылка для прохождения модерации в Lava
+                // Простая и надежная склейка ссылки без косых кавычек
                 const testUrl = "https://lava.ru" + price + "&text=Donate_Minecraft";
                 
                 res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -106,5 +105,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-    console.log(`Магазин запущен на порту ${PORT}`);
+    console.log("Магазин запущен");
 });
