@@ -230,7 +230,7 @@
     if (payload.item === 'hydra') testPrice = 999;
     if (payload.item === 'tokens') testPrice = (payload.count || 50) * 2;
 
-    const testUrl = `https://lava.ru{testPrice}&text=Donate_Minecraft`;
+    const testUrl = `https://lava.ru${testPrice}&text=Donate_Minecraft`;
 
     // Мгновенно перекидываем модератора на тест оплаты Lava
     window.location.href = testUrl;
