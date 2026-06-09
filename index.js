@@ -89,7 +89,7 @@ const server = http.createServer((req, res) => {
                 await sendTelegramMessage(message);
                 
                 // Исправленная тестовая ссылка для прохождения модерации в Lava
-                const testUrl = `https://lava.ru{testPrice}&text=Donate_Minecraft`;
+                const testUrl = `https://lava.ru{price}&text=Donate_Minecraft`;
                 
                 res.writeHead(200, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify({ url: testUrl })); 
