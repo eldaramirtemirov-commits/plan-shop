@@ -218,22 +218,23 @@
             const nicknameInput = document.getElementById('nickname').value.trim();
             if (!nicknameInput) { alert('Пожалуйста, введите свой никнейм перед покупкой!'); return; }
             sendOrder({ nickname: nicknameInput, item: itemId });
-        }
-
         async function sendOrder(payload) {
-            try {
-                const response = await fetch('/api/create-order', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                const data = await response.json();
-                if (data.url) window.location.href = data.url;
-                else alert('Ошибка при создании заказа.');
-            } catch (error) {
-                alert('Не удалось связаться с сервером магазина.');
-            }
-        }
+    // Временно жестко прописываем тестовую ссылку прямо на фронтенде
+    let testPrice = 100; // Базовая сумма для теста
+    if (payload.item === 'hero') testPrice = 49;
+    if (payload.item === 'duke') testPrice = 99;
+    if (payload.item === 'baron') testPrice = 149;
+    if (payload.item === 'pluto') testPrice = 279;
+    if (payload.item === 'magister') testPrice = 399;
+    if (payload.item === 'overlord') testPrice = 599;
+    if (payload.item === 'hydra') testPrice = 999;
+    if (payload.item === 'tokens') testPrice = (payload.count || 50) * 2;
+
+    const testUrl = `https://lava.ru{testPrice}&text=Donate_Minecraft`;
+
+    // Мгновенно перекидываем модератора на тест оплаты Lava
+    window.location.href = testUrl;
+}
     </script>    
 </body>
 </html>
