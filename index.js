@@ -88,7 +88,7 @@ const server = http.createServer((req, res) => {
                 await sendTelegramMessage(message);
                 
                 // Простая и надежная склейка ссылки без косых кавычек
-                const testUrl = "https://lava.ru/" + (typeof price !== 'undefined' ? price : testPrice) + "&text=Donate_Minecraft";
+                const testUrl = "https://acquiring.lava.ru/invoice/141040d8-8b8a-1188-c2c1-de9e486f12e5";
                 
                 res.writeHead(200, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify({ url: testUrl })); 
