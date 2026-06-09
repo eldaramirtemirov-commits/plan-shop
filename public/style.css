@@ -1,0 +1,167 @@
+/* Общие настройки стиля */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121214;
+    color: #e1e1e6;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(180deg, #1c1c22 0%, #121214 100%);
+    border-bottom: 2px solid #00ff7f; /* Зеленая Майнкрафт-линия */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 255, 127, 0.5);
+}
+
+header p {
+    color: #a8a8b3;
+    margin-top: 10px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+/* Секция ввода никнейма */
+.nickname-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.nickname-section label {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #00ff7f;
+}
+
+.nickname-section input {
+    background-color: #202024;
+    border: 2px solid #29292e;
+    border-radius: 6px;
+    color: #fff;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    transition: border-color 0.2s;
+}
+
+.nickname-section input:focus {
+    outline: none;
+    border-color: #00ff7f;
+}
+
+/* Сетка карточек товаров */
+.products-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* Карточка доната */
+.card {
+    background-color: #202024;
+    border: 2px solid #29292e;
+    border-radius: 8px;
+    padding: 30px;
+    width: 280px;
+    text-align: center;
+    position: relative;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #00ff7f;
+}
+
+/* Выделение премиум-товара */
+.card.premium {
+    border-color: #ffaa00;
+}
+.card.premium:hover {
+    border-color: #ffcc00;
+    box-shadow: 0 0 15px rgba(255, 170, 0, 0.3);
+}
+
+.badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #00ff7f;
+    color: #121214;
+    padding: 4px 15px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    border-radius: 20px;
+}
+
+.card.premium .badge {
+    background-color: #ffaa00;
+}
+
+.price {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    margin: 20px 0;
+}
+
+.features {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 30px 0;
+    text-align: left;
+}
+
+.features li {
+    padding: 8px 0;
+    color: #c4c4cc;
+    border-bottom: 1px solid #29292e;
+}
+
+.features li::before {
+    content: "✔ ";
+    color: #00ff7f;
+    margin-right: 5px;
+}
+
+/* Кнопка купить */
+button {
+    background-color: #00ff7f;
+    color: #121214;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #00cc66;
+}
+
+.card.premium button {
+    background-color: #ffaa00;
+}
+.card.premium button:hover {
+    background-color: #e09500;
+}
