@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Обязательный проверочный тег для Lava -->
     <meta name="lava-verify" content="eb3421881636e204">
     <title>Plan Shop For Ore</title>
     <link rel="stylesheet" href="style.css">
@@ -15,7 +14,6 @@
         <p>Покупка доната и привилегий</p>
     </header>
 
-    <!-- Кнопка политики конфиденциальности вверху страницы -->
     <div style="text-align: center; margin-top: 20px;">
         <a href="/privacy.html" style="display: inline-block; background-color: #202024; color: #ffaa00; border: 1px solid #ffaa00; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; transition: 0.2s;">
             Политика конфиденциальности
@@ -23,13 +21,11 @@
     </div>
 
     <main class="container">
-        <!-- Форма ввода ника -->
         <section class="nickname-section">
             <label for="nickname">Введите ваш ник в игре:</label>
             <input type="text" id="nickname" placeholder="Например: StevePro" required>
         </section>
 
-        <!-- Раздел покупки токенов (Калькулятор) -->
         <section class="tokens-section" style="background: #202024; border: 2px solid #ffaa00; border-radius: 8px; padding: 30px; text-align: center; margin-bottom: 50px; box-shadow: 0 0 15px rgba(255, 170, 0, 0.1);">
             <div style="background-color: #ffaa00; color: #121214; padding: 4px 15px; font-weight: bold; font-size: 0.85rem; border-radius: 20px; display: inline-block; margin-bottom: 15px;">ВАЛЮТА СЕРВЕРА</div>
             <h2 style="margin: 0; color: #fff; font-size: 1.8rem;">Купить Токены</h2>
@@ -42,9 +38,7 @@
             <button onclick="buyTokens()" style="background-color: #ffaa00; max-width: 200px; margin-top: 10px;">Купить токены</button>
         </section>
 
-        <!-- Карточки товаров -->
         <section class="products-grid">
-            <!-- Герой -->
             <div class="card">
                 <div class="badge">ДОНАТ</div>
                 <h2>Герой</h2>
@@ -52,7 +46,6 @@
                 <ul class="features"><li>Кит-набор /kit hero</li><li>Префикс [Герой]</li><li>3 приватных региона</li></ul>
                 <button onclick="buyDonate('hero')">Купить</button>
             </div>
-            <!-- Герцог -->
             <div class="card">
                 <div class="badge">ДОНАТ</div>
                 <h2>Герцог</h2>
@@ -60,7 +53,6 @@
                 <ul class="features"><li>Возможность летать (/fly)</li><li>Префикс [Герцог]</li><li>5 приватных регионов</li></ul>
                 <button onclick="buyDonate('duke')">Купить</button>
             </div>
-            <!-- Барон -->
             <div class="card">
                 <div class="badge">ДОНАТ</div>
                 <h2>Барон</h2>
@@ -68,7 +60,6 @@
                 <ul class="features"><li>Режим бога (/god)</li><li>Префикс [Барон]</li><li>Иммунитет к кику</li></ul>
                 <button onclick="buyDonate('baron')">Купить</button>
             </div>
-            <!-- Плутон -->
             <div class="card">
                 <div class="badge">ПОПУЛЯРНОЕ</div>
                 <h2>Плутон</h2>
@@ -76,7 +67,6 @@
                 <ul class="features"><li>Доступ к креативу (/gamemode 1)</li><li>Префикс [Плутон]</li><li>Цветной ник в чате</li></ul>
                 <button onclick="buyDonate('pluto')">Купить</button>
             </div>
-            <!-- Магистр -->
             <div class="card">
                 <div class="badge">КРУТОЙ</div>
                 <h2>Магистр</h2>
@@ -84,7 +74,6 @@
                 <ul class="features"><li>Админ-команды (/ban, /kick)</li><li>Префикс [Магистр]</li><li>Доступ к логам блоков</li></ul>
                 <button onclick="buyDonate('magister')">Купить</button>
             </div>
-            <!-- Оверлорд -->
             <div class="card premium">
                 <div class="badge">ЭЛИТА</div>
                 <h2>Оверлорд</h2>
@@ -92,7 +81,6 @@
                 <ul class="features"><li>Огромный набор прав</li><li>Префикс [Оверлорд]</li><li>Доступ к /kit overlord</li></ul>
                 <button onclick="buyDonate('overlord')">Купить</button>
             </div>
-            <!-- Гидра -->
             <div class="card premium">
                 <div class="badge">ВЛАДЫКА</div>
                 <h2>Гидра</h2>
@@ -111,11 +99,9 @@
             <a href="/privacy.html" style="color: #ffaa00; text-decoration: none; margin: 0 10px;">Политику конфиденциальности</a> | 
             <a href="https://t.me" style="color: #00ff7f; text-decoration: none; margin: 0 10px;" target="_blank">Техническая поддержка</a>
         </p>
-        <p style="font-size: 0.85rem; color: #737380; margin-top: 10px;">Minecraft — торговая марка Mojang Synergies AB. Данный сайт никак не связан с Mojang.</p>
     </footer>
 
     <script>
-        // Функция автоматического подсчета токенов в реальном времени
         function calculateTokens() {
             const amountInput = document.getElementById('tokenAmount');
             let amount = parseInt(amountInput.value);
@@ -123,32 +109,20 @@
             document.getElementById('tokenPrice').innerText = amount * 2;
         }
 
-        // Покупка привилегий
         async function buyDonate(itemId) {
             const nicknameInput = document.getElementById('nickname').value.trim();
-            if (!nicknameInput) { 
-                alert('Пожалуйста, введите свой никнейм перед покупкой!'); 
-                return; 
-            }
+            if (!nicknameInput) { alert('Пожалуйста, введите свой никнейм перед покупкой!'); return; }
             sendOrder({ nickname: nicknameInput, item: itemId });
         }
 
-        // Покупка валюты сервера
         async function buyTokens() {
             const nicknameInput = document.getElementById('nickname').value.trim();
             const tokenAmount = parseInt(document.getElementById('tokenAmount').value);
-            if (!nicknameInput) { 
-                alert('Пожалуйста, введите свой никнейм перед покупкой!'); 
-                return; 
-            }
-            if (isNaN(tokenAmount) || tokenAmount < 1) { 
-                alert('Введите корректное количество токенов!'); 
-                return; 
-            }
+            if (!nicknameInput) { alert('Пожалуйста, введите свой никнейм перед покупкой!'); return; }
+            if (isNaN(tokenAmount) || tokenAmount < 1) { alert('Введите корректное количество токенов!'); return; }
             sendOrder({ nickname: nicknameInput, item: 'tokens', count: tokenAmount });
         }
 
-        // Финальная отправка и редирект на тест кассы Lava напрямую без ошибок бэкенда
         async function sendOrder(payload) {
             let testPrice = 100; 
             if (payload.item === 'hero') testPrice = 49;
@@ -160,10 +134,8 @@
             if (payload.item === 'hydra') testPrice = 999;
             if (payload.item === 'tokens') testPrice = (payload.count || 50) * 2;
 
-            const testUrl = "https://lava.ru" + testPrice + "&text=Donate_Minecraft";
-            
-            // Мгновенный и защищенный переход на платежную страницу для модератора
-            window.location.href = testUrl;
+            // Железобетонная сборка ссылки обычными кавычками
+            window.location.href = "https://lava.ru" + testPrice + "&text=Donate_Minecraft";
         }
     </script>
 </body>
