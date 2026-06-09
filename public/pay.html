@@ -78,30 +78,28 @@
         document.getElementById('out-price').innerText = price;
 
         function startPayment() {
-            const selectedMethod = document.querySelector('input[name="payment_method"]:checked').value;
-            let redirectUrl = "";
+    const selectedMethod = document.querySelector('input[name="payment_method"]:checked').value;
+    let redirectUrl = "";
 
-            // ====== НАСТРОЙКА ССЫЛОК ПЕРЕНАПРАВЛЕНИЯ ======
-            if (selectedMethod === 'sbp') {
-                // Сюда вставляете вашу ссылку для СБП
-                redirectUrl = "https://makesapayment.ru" + price;
-            } 
-            else if (selectedMethod === 'card_rf') {
-                // Сюда ссылку для карт РФ
-                redirectUrl = "https://makesapayment.ru" + price;
-            } 
-            else if (selectedMethod === 'card_by') {
-                // Сюда ссылку для Беларуси
-                redirectUrl = "https://makesapayment.ru" + price;
-            } 
-            else if (selectedMethod === 'card_int') {
-                // Сюда ссылку для иностранных карт
-                redirectUrl = "https://makesapayment.ru" + price;
-            }
+    // ====== НАСТРОЙКА РЕАЛЬНЫХ ССЫЛОК ДЛЯ ВАШЕЙ КАССЫ ======
+    if (selectedMethod === 'sbp') {
+        // Пример правильной ссылки с использованием знака $ перед скобкой переменной стоимости
+        redirectUrl = `https://makesapayment.ru{price}&shop=PlanShop`;
+    } 
+    else if (selectedMethod === 'card_rf') {
+        redirectUrl = `https://makesapayment.ru{price}&shop=PlanShop`;
+    } 
+    else if (selectedMethod === 'card_by') {
+        redirectUrl = `https://makesapayment.ru{price}&shop=PlanShop`;
+    } 
+    else if (selectedMethod === 'card_int') {
+        redirectUrl = `https://makesapayment.ru{price}&shop=PlanShop`;
+    }
 
-            // Перенаправляем игрока на выбранный сайт оплаты
-            window.location.href = redirectUrl;
-        }
+    // Перенаправляем игрока на выбранный сайт оплаты
+    window.location.href = redirectUrl;
+}
+
     </script>
 </body>
 </html>
