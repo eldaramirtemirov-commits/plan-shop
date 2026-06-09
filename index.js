@@ -91,7 +91,7 @@ const server = http.createServer((req, res) => {
                 await sendTelegramMessage(message);
                 
                 res.writeHead(200, { 'Content-Type': 'application/json' });
-                res.end(JSON.stringify({ url: 'https://lava.ru' })); 
+                res.end(JSON.stringify({ url: 'https://lava.ru' }));
             } catch (e) {
                 res.writeHead(400);
                 res.end();
