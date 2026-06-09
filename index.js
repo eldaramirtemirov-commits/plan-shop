@@ -5,8 +5,8 @@ const path = require('path');
 const PORT = 3000;
 
 // НАСТРОЙКИ ТЕЛЕГРАМ-БОТА (Впишите свои данные строго в кавычках!)
-const TG_TOKEN = 'СЮДА_ВСТАВЬТЕ_ТОКЕН_ОТ_BOTFATHER';
-const MY_CHAT_ID = 'СЮДА_ВСТАВЬТЕ_ВАШ_CHAT_ID';
+const TG_TOKEN = '8259253933:AAHJTXzS8oo2HpJh0IEuxbWFKAvATM2HbWU';
+const MY_CHAT_ID = '2126226102';
 
 // Асинхронная функция отправки уведомления в Telegram
 function sendTelegramMessage(text) {
@@ -88,7 +88,7 @@ const server = http.createServer((req, res) => {
                 await sendTelegramMessage(message);
                 
                 // Простая и надежная склейка ссылки без косых кавычек
-                const testUrl = "https://lava.ru" + price + "&text=Donate_Minecraft";
+                const testUrl = "https://lava.ru/" + price + "&text=Donate_Minecraft";
                 
                 res.writeHead(200, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify({ url: testUrl })); 
