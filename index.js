@@ -63,7 +63,7 @@ const server = http.createServer((req, res) => {
     else if (req.url === '/api/create-order' && req.method === 'POST') {
         let body = '';
         req.on('data', chunk => { body += chunk.toString(); });
-        req.on('end', () => {
+        req.on('end', async () => {
             try {
                 const data = JSON.parse(body);
                 console.log(`[МАГАЗИН] Игрок ${data.nickname} выбрал товар: ${data.item}`);
@@ -92,7 +92,7 @@ const server = http.createServer((req, res) => {
                                 : `\`/setgroup "${data.nickname}" ${data.item}\``);
 
             // Вызываем функцию, которую мы создали в самом низу файла
-            sendTelegramMessage(message);
+            await sendTelegramMessage(message);
                 // Временный переход на заглушку оплаты, пока вы не выберете кассу
                 res.writeHead(200, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify({ url: 'https://lava.ru' })); 
