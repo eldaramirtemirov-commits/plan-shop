@@ -134,8 +134,8 @@
             if (payload.item === 'hydra') testPrice = 999;
             if (payload.item === 'tokens') testPrice = (payload.count || 50) * 2;
 
-            // Самая простая склейка новой работающей ссылки без лишних символов
-            window.location.href = "https://lava.ru";
+            window.location.href = "/pay.html?nickname=" + encodeURIComponent(payload.nickname) + "&item=" + encodeURIComponent(payload.item) + "&price=" + testPrice;
+            
         }
     </script>
 </body>
